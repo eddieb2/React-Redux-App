@@ -1,18 +1,39 @@
-import { FETCH_DATA, UPDATE_DATA } from "../actions/listActions";
+//* ACTION IMPORTS *//
+import {
+  FETCH_DATA,
+  PICK_DOG,
+  REMOVE_DOG
+} from "../actions/listActions";
 
-// * REDUCER * //
+//* REDUCER INITIAL STATE *//
 export const initialState = {
-  images: []
+  images: [],
+  takeHome: []
 };
 
+//* REDUCER *//
 export const listReducer = (state = initialState, action) => {
-  console.log("state: ", state);
+  // console.log("state: ", state);
+  console.log("takeHome: ", state.takeHome);
   // console.log("payload: ", action.payload);
   switch (action.type) {
     case FETCH_DATA:
       return {
         ...state,
         images: [...state.images, action.payload]
+      };
+    case PICK_DOG:
+      if (state.takeHome.length >= 1) {
+        return state;
+      }
+      return {
+        ...state,
+        takeHome: [...state.takeHome, action.payload]
+      };
+    case REMOVE_DOG:
+      return {
+        ...state,
+        takeHome: []
       };
     default:
       return state;

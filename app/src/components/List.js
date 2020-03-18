@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { fetchData } from "../actions/listActions";
+import { fetchData, takeHomeDog } from "../actions/listActions";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -49,7 +49,7 @@ const List = props => {
       <ButtonWrapper>
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           onClick={handleClick}
         >
           Find A Dog !
@@ -85,7 +85,15 @@ const List = props => {
               >
                 Share
               </Button>
-              <Button size="small" color="primary" variant="outlined">
+              <Button
+                size="small"
+                color="primary"
+                variant="outlined"
+                onClick={e => {
+                  props.takeHomeDog(item);
+                  e.preventDefault();
+                }}
+              >
                 Take Home!
               </Button>
             </CardActions>
@@ -98,8 +106,11 @@ const List = props => {
 
 const mapStateToProps = state => {
   return {
-    images: state.images
+    images: state.images,
+    takeHome: state.takeHome
   };
 };
 
-export default connect(mapStateToProps, { fetchData })(List);
+export default connect(mapStateToProps, { fetchData, takeHomeDog })(
+  List
+);

@@ -2,7 +2,8 @@
 import {
   FETCH_DATA,
   PICK_DOG,
-  REMOVE_DOG
+  REMOVE_DOG,
+  CLEAR_SEARCH
 } from "../actions/listActions";
 
 //* REDUCER INITIAL STATE *//
@@ -34,6 +35,11 @@ export const listReducer = (state = initialState, action) => {
       return {
         ...state,
         takeHome: []
+      };
+    case CLEAR_SEARCH:
+      return {
+        ...state,
+        images: []
       };
     default:
       return state;

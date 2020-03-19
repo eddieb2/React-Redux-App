@@ -4,6 +4,7 @@ import axios from "axios";
 export const FETCH_DATA = "FETCH_DATA";
 export const PICK_DOG = "PICK_DOG";
 export const REMOVE_DOG = "REMOVE_DOG";
+export const CLEAR_SEARCH = "CLEAR_SEARCH";
 
 //* ACTION CREATORS *//
 export const fetchData = () => dispatch => {
@@ -31,5 +32,11 @@ export const takeHomeDog = clickedDog => {
 export const removeDog = () => {
   return {
     type: REMOVE_DOG
+  };
+};
+
+export const clearSearch = () => {
+  return {
+    type: CLEAR_SEARCH
   };
 };
